@@ -21,9 +21,9 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Upload site content
-        uses: actions/upload-pages-artifact@v1  # ✅ This one is correct
+        uses: actions/upload-pages-artifact@v1  # ✅ Must be this one
         with:
-          path: .  # or `./public` if your HTML is inside a folder
+          path: .  # or ./dist if you use a build tool
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
