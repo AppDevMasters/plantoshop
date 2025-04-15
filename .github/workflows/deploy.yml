@@ -20,11 +20,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1  # ✅ this is the correct one
-
+      - name: Upload site content
+        uses: actions/upload-pages-artifact@v1  # ✅ This one is correct
         with:
-          path: .  # This assumes your site files are in the root
+          path: .  # or `./public` if your HTML is inside a folder
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
