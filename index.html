@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PlanToShop – Grocery Shopping Made Easy</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Splide CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -54,40 +56,14 @@
     .app-store-btn img {
       height: 48px;
     }
-
-    /* SLIDER STYLES */
-    .slider {
-      position: relative;
-      width: 300px;
+    .splide {
       margin-top: 2rem;
+      max-width: 300px;
     }
-
-    .slider img {
+    .splide__slide img {
       width: 100%;
       border-radius: 1.5rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      display: none;
-    }
-
-    .slider img.active {
-      display: block;
-    }
-
-    .slider-controls {
-      margin-top: 1rem;
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .slider-controls button {
-      padding: 0.5rem 1rem;
-      border: none;
-      background: #2d7a38;
-      color: #fff;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
     }
   </style>
 </head>
@@ -105,39 +81,37 @@
       <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
     </a>
 
-    <!-- SLIDER START -->
-    <div class="slider">
-      <img src="Screen1.png" class="active" alt="Screenshot 1">
-      <img src="Screen2.png" alt="Screenshot 2">
-      <img src="Screen3.png" alt="Screenshot 3">
+    <!-- Splide Carousel -->
+    <div class="splide" aria-label="App Screenshots">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide"><img src="Screen1.png" alt="Screenshot 1"></li>
+          <li class="splide__slide"><img src="Screen2.png" alt="Screenshot 2"></li>
+          <li class="splide__slide"><img src="Screen3.png" alt="Screenshot 3"></li>
+        </ul>
+      </div>
     </div>
-
-    <div class="slider-controls">
-      <button onclick="prevSlide()">← Prev</button>
-      <button onclick="nextSlide()">Next →</button>
-    </div>
-    <!-- SLIDER END -->
   </div>
 
+  <!-- Splide JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   <script>
-    const slides = document.querySelectorAll('.slider img');
-    let currentIndex = 0;
-
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % slides.length;
-      showSlide(currentIndex);
-    }
-
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      showSlide(currentIndex);
-    }
+    document.addEventListener('DOMContentLoaded', function () {
+      new Splide('.splide', {
+        type: 'loop',
+        perPage: 1,
+        autoplay: true,
+        interval: 3000,
+        pauseOnHover: true,
+        arrows: true,
+        pagination: true,
+        breakpoints: {
+          768: {
+            arrows: false
+          }
+        }
+      }).mount();
+    });
   </script>
 </body>
 </html>
