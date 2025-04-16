@@ -6,7 +6,7 @@
   <title>PlanToShop – Grocery Shopping Made Easy</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <!-- Splide CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -15,6 +15,7 @@
       background: #fff;
       color: #111;
     }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -24,6 +25,7 @@
       align-items: center;
       text-align: center;
     }
+
     .logo {
       display: flex;
       align-items: center;
@@ -32,34 +34,40 @@
       font-weight: 600;
       margin-bottom: 2rem;
     }
-    .logo-icon {
+
+    .logo-img {
       width: 32px;
       height: 32px;
-      background-color: #2d7a38;
       border-radius: 6px;
-      display: inline-block;
+      object-fit: cover;
     }
+
     h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
+
     p {
       font-size: 1.1rem;
       color: #444;
       max-width: 600px;
       margin: 0 auto 2rem;
     }
+
     .app-store-btn {
       display: inline-block;
       margin-top: 1rem;
     }
+
     .app-store-btn img {
       height: 48px;
     }
+
     .splide {
       margin-top: 2rem;
       max-width: 300px;
     }
+
     .splide__slide img {
       width: 100%;
       border-radius: 1.5rem;
@@ -70,7 +78,7 @@
 <body>
   <div class="container">
     <div class="logo">
-      <div class="logo-icon"></div>
+      <img src="icon.png" alt="PlanToShop Icon" class="logo-img">
       <span>PlanToShop</span>
     </div>
 
@@ -85,9 +93,9 @@
     <div class="splide" aria-label="App Screenshots">
       <div class="splide__track">
         <ul class="splide__list">
-          <li class="splide__slide"><img src="Screen1.png" alt="Screenshot 1"></li>
-          <li class="splide__slide"><img src="Screen2.png" alt="Screenshot 2"></li>
-          <li class="splide__slide"><img src="Screen3.png" alt="Screenshot 3"></li>
+          <li class="splide__slide"><img src="Screen1.png" alt="Screenshot 1" /></li>
+          <li class="splide__slide"><img src="Screen2.png" alt="Screenshot 2" /></li>
+          <li class="splide__slide"><img src="Screen3.png" alt="Screenshot 3" /></li>
         </ul>
       </div>
     </div>
@@ -107,9 +115,9 @@
         pagination: true,
         breakpoints: {
           768: {
-            arrows: false
-          }
-        }
+            arrows: false,
+          },
+        },
       }).mount();
     });
   </script>
