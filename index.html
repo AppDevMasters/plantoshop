@@ -173,10 +173,45 @@
       text-decoration: underline;
     }
 
-    @media (min-width: 768px) {
-      .splide {
-        max-width: 360px;
-      }
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-top: 1px solid #e5e7eb;
+      padding: 1rem 1.25rem;
+      font-size: 0.95rem;
+      color: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .cookie-banner p {
+      margin: 0;
+      flex: 1;
+      font-size: 0.875rem;
+      color: #444;
+    }
+
+    .cookie-banner a {
+      color: #2d7a38;
+      text-decoration: underline;
+    }
+
+    .cookie-banner button {
+      background: #2d7a38;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin-left: 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.875rem;
     }
   </style>
 </head>
@@ -194,7 +229,6 @@
       <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
     </a>
 
-    <!-- Splide Carousel -->
     <div class="splide" aria-label="App Screenshots">
       <div class="splide__track">
         <ul class="splide__list">
@@ -209,7 +243,6 @@
     </div>
   </div>
 
-  <!-- Benefits Section -->
   <section class="planning-section">
     <h2>Consequences of Not Planning</h2>
     <ul>
@@ -219,11 +252,8 @@
     </ul>
   </section>
 
-  <!-- Final Call to Action -->
   <div class="download-again">
-    <h2>
-      Download the app from the App Store and save 20% – 50% on groceries just by planning ahead.
-    </h2>
+    <h2>Download the app from the App Store and save 20% – 50% on groceries just by planning ahead.</h2>
     <a href="https://apps.apple.com/app/6739975303" class="app-store-btn" target="_blank">
       <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
     </a>
@@ -239,6 +269,11 @@
       </p>
     </div>
   </footer>
+
+  <div id="cookieBanner" class="cookie-banner" style="display:none;">
+    <p>We use cookies to improve your experience. By using this site, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+    <button onclick="acceptCookies()">Accept</button>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   <script>
@@ -257,7 +292,16 @@
           },
         },
       }).mount();
+
+      if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookieBanner').style.display = 'flex';
+      }
     });
+
+    function acceptCookies() {
+      localStorage.setItem('cookiesAccepted', 'true');
+      document.getElementById('cookieBanner').style.display = 'none';
+    }
   </script>
 </body>
 </html>
