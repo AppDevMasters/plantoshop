@@ -5,231 +5,439 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PlanToShop – Grocery Shopping Made Easy</title>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M8Z32TH2PG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-M8Z32TH2PG');
-</script>
-
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8Z32TH2PG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M8Z32TH2PG');
+  </script>
+  
   <!-- SEO Meta Tags -->
   <meta name="description" content="PlanToShop helps you reduce your grocery costs by 20-50% through better shopping planning. Create lists, track prices, and save money." />
   <meta name="keywords" content="grocery planning, save money on groceries, grocery app, shopping list app" />
-
-  <!-- Open Graph -->
+  
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://plantoshop.com/" />
   <meta property="og:title" content="PlanToShop – Reduce Your Grocery Costs" />
   <meta property="og:description" content="Save 20-50% on your grocery bills with better planning. Download the PlanToShop app today." />
   <meta property="og:image" content="https://plantoshop.com/og-image.jpg" />
-
+  
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://plantoshop.com/" />
   <meta property="twitter:title" content="PlanToShop – Reduce Your Grocery Costs" />
   <meta property="twitter:description" content="Save 20-50% on your grocery bills with better planning. Download the PlanToShop app today." />
   <meta property="twitter:image" content="https://plantoshop.com/og-image.jpg" />
-
+  
+  <!-- Favicon -->
   <link rel="icon" href="icon.png" type="image/png">
+  
+  <!-- Preconnect to external domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  
+  <!-- Preload critical resources -->
   <link rel="preload" href="icon.png" as="image" fetchpriority="high">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+  
+  <!-- Fonts and Styles with display swap for better loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" media="print" onload="this.media='all'" />
   <style>
     :root {
       --primary: #2d7a38;
-      --text: #111;
-      --text-muted: #555;
-      --bg-light: #f9f9f9;
+      --primary-light: #e8f5e9;
+      --text: #111827;
+      --text-muted: #4b5563;
+      --bg-light: #f9fafb;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --transition-normal: 0.3s ease;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       margin: 0;
       padding: 0;
       background: #fff;
       color: var(--text);
+      line-height: 1.6;
     }
 
     .container {
-      max-width: 600px;
+      width: 100%;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 2rem 1rem;
+      padding: 1.5rem 1.25rem;
+    }
+
+    .hero {
       text-align: center;
+      padding: 2rem 1.25rem 3rem;
+      background: linear-gradient(to bottom, white, var(--primary-light));
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      margin-bottom: 2rem;
     }
 
     .logo {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
     }
 
     .logo-img {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
       object-fit: cover;
+      box-shadow: var(--shadow-sm);
     }
 
     h1 {
-      font-size: 1.8rem;
+      font-size: 2.25rem;
+      line-height: 1.2;
       margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+      font-weight: 600;
     }
 
     p {
-      font-size: 1rem;
+      font-size: 1.125rem;
       color: var(--text-muted);
       margin-bottom: 2rem;
     }
 
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+
+    .savings {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 1.25rem;
+    }
+
     .app-store-btn {
       display: inline-block;
+      transition: transform 0.2s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-store-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .app-store-btn:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 4px;
     }
 
     .app-store-btn img {
-      height: 44px;
+      height: 48px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
 
     .splide {
-      margin: 2rem auto 2.5rem;
-      max-width: 280px;
+      margin: 3rem auto;
+      max-width: 360px;
+    }
+
+    .splide__slide {
+      padding: 0.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .splide__slide.is-active {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .splide__slide img {
       width: 100%;
-      border-radius: 1rem;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
     }
 
-    .planning-section {
-      margin: 3rem 1rem;
-      padding: 2rem;
+    .benefits-section {
+      margin: 3rem 0;
+      padding: 2.5rem 2rem;
       background-color: var(--bg-light);
-      border-radius: 1rem;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-      text-align: left;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
-    .planning-section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+    .benefits-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .benefits-section h2 {
       color: var(--primary);
-    }
-
-    .planning-section ul {
-      padding-left: 1rem;
-      color: var(--text-muted);
-    }
-
-    .planning-section li {
-      margin-bottom: 0.8rem;
-      line-height: 1.5;
-    }
-
-    .download-again {
-      margin: 3rem 1rem 2rem;
+      margin-bottom: 1.5rem;
       text-align: center;
     }
 
-    .download-again h2 {
-      font-size: 1.3rem;
+    .benefits-list {
+      list-style-type: none;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition-delay: calc(var(--i) * 150ms);
+    }
+
+    .benefit-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .benefit-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .benefit-icon {
+      background-color: var(--primary-light);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      flex-shrink: 0;
       color: var(--primary);
-      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .benefit-item:hover .benefit-icon {
+      transform: scale(1.1);
+    }
+
+    .benefit-content {
+      flex: 1;
+    }
+
+    .benefit-title {
       font-weight: 600;
+      margin-bottom: 0.25rem;
+      font-size: 1.125rem;
+    }
+
+    .benefit-desc {
+      color: var(--text-muted);
+      font-size: 0.975rem;
+      margin: 0;
+    }
+
+    .cta-section {
+      text-align: center;
+      margin: 4rem 0 3rem;
+      padding: 2rem;
+      background: linear-gradient(to bottom right, var(--primary-light), white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .cta-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cta-section h2 {
+      color: var(--text);
+      margin-bottom: 1.5rem;
     }
 
     footer {
-      background: #f4f4f4;
-      padding: 1.5rem 1rem;
-      font-size: 0.9rem;
+      background: var(--bg-light);
+      padding: 2rem 1rem;
+      font-size: 0.875rem;
       color: var(--text-muted);
       text-align: center;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    footer.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .footer-content {
       max-width: 600px;
       margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1rem;
     }
 
     .footer-content a {
       color: var(--primary);
       text-decoration: none;
-      margin: 0 0.25rem;
+      position: relative;
+      transition: color var(--transition-normal);
     }
 
     .footer-content a:hover {
-      text-decoration: underline;
+      text-decoration: none;
+      color: var(--primary);
     }
 
-    .cookie-banner {
-      position: fixed;
-      bottom: 0;
+    .footer-content a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      bottom: -2px;
       left: 0;
-      right: 0;
-      background: #ffffff;
-      border-top: 1px solid #e5e7eb;
-      padding: 1rem 1.25rem;
-      font-size: 0.95rem;
-      color: #111;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+      background-color: var(--primary);
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-out;
     }
 
-    .cookie-banner p {
-      margin: 0;
-      flex: 1;
-      font-size: 0.875rem;
-      color: #444;
+    .footer-content a:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
     }
 
-    .cookie-banner a {
-      color: #2d7a38;
-      text-decoration: underline;
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary);
+      color: white;
+      padding: 8px;
+      z-index: 100;
+      transition: top 0.3s;
     }
 
-    .cookie-banner button {
-      background: #2d7a38;
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      margin-left: 1rem;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 0.875rem;
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Animation keyframes */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.875rem;
+      }
+      
+      .hero p {
+        font-size: 1.125rem;
+      }
+      
+      .benefits-section {
+        padding: 2rem 1.5rem;
+      }
+      
+      .splide {
+        max-width: 300px;
+      }
+    }
+
+    /* Tablet and up */
+    @media (min-width: 768px) {
+      .hero {
+        padding: 3rem 2rem 4rem;
+      }
+      
+      .splide {
+        max-width: 420px;
+      }
+      
+      .container {
+        padding: 2rem;
+      }
+    }
+
+    /* Reduce motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="hero">
     <div class="logo">
       <img src="icon.png" alt="PlanToShop Icon" class="logo-img">
       <span>PlanToShop</span>
     </div>
 
     <h1>Reduce Your Grocery Cost</h1>
-    <p>Just planning ahead can reduce your grocery cost by 20% – 50%.</p>
+    <p>Just planning ahead can reduce your grocery cost by <span class="savings">20% – 50%</span>.</p>
 
     <a href="https://apps.apple.com/app/6739975303" class="app-store-btn" target="_blank">
       <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
     </a>
+  </div>
 
+  <div class="container">
+    <!-- Splide Carousel -->
     <div class="splide" aria-label="App Screenshots">
       <div class="splide__track">
         <ul class="splide__list">
@@ -242,39 +450,54 @@
         </ul>
       </div>
     </div>
-  </div>
-
-  <section class="planning-section">
-    <h2>Consequences of Not Planning</h2>
-    <ul>
-      <li><strong>Impulse Buys:</strong> Without a plan, it’s easy to grab things you don’t actually need.</li>
-      <li><strong>Frequent Trips:</strong> Forgetting items leads to extra store visits and extra spending.</li>
-      <li><strong>Waste:</strong> No plan? More food gets tossed — and so does your money.</li>
-    </ul>
-  </section>
-
-  <div class="download-again">
-    <h2>Download the app from the App Store and save 20% – 50% on groceries just by planning ahead.</h2>
-    <a href="https://apps.apple.com/app/6739975303" class="app-store-btn" target="_blank">
-      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
-    </a>
+  
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+      <h2>Why Planning Matters</h2>
+      <ul class="benefits-list">
+        <li class="benefit-item">
+          <div class="benefit-icon">!</div>
+          <div class="benefit-content">
+            <div class="benefit-title">Avoid Impulse Buys</div>
+            <div class="benefit-desc">Without a plan, it's easy to grab things you don't actually need, adding unnecessary costs to your bill.</div>
+          </div>
+        </li>
+        <li class="benefit-item">
+          <div class="benefit-icon">↻</div>
+          <div class="benefit-content">
+            <div class="benefit-title">Eliminate Frequent Trips</div>
+            <div class="benefit-desc">Forgetting items leads to extra store visits, costing you more time and money with each trip.</div>
+          </div>
+        </li>
+        <li class="benefit-item">
+          <div class="benefit-icon">♻️</div>
+          <div class="benefit-content">
+            <div class="benefit-title">Reduce Food Waste</div>
+            <div class="benefit-desc">No plan means more food gets tossed — and so does your hard-earned money.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  
+    <!-- Final Call to Action -->
+    <div class="cta-section">
+      <h2>
+        Save 20–50% on groceries with better planning
+      </h2>
+      <a href="https://apps.apple.com/app/6739975303" class="app-store-btn" target="_blank">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+      </a>
+    </div>
   </div>
 
   <footer>
     <div class="footer-content">
-      <p>
-        &copy; 2025 /
-        <a href="https://appdevmasters.com/" target="_blank">App Dev Masters LTD</a> /
-        <a href="privacy.html">Privacy Policy</a> /
-        <a href="terms.html">Terms & Conditions</a>
-      </p>
+      <span>&copy; 2025</span>
+      <a href="https://appdevmasters.com/" target="_blank">App Dev Masters LTD</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms & Conditions</a>
     </div>
   </footer>
-
-  <div id="cookieBanner" class="cookie-banner" style="display:none;">
-    <p>We use cookies to improve your experience. By using this site, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
-    <button onclick="acceptCookies()">Accept</button>
-  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   <script>
@@ -285,24 +508,12 @@
         autoplay: true,
         interval: 3000,
         pauseOnHover: true,
-        arrows: true,
+        arrows: false,
         pagination: true,
-        breakpoints: {
-          768: {
-            arrows: false,
-          },
-        },
+        gap: '1rem',
+        focus: 'center',
       }).mount();
-
-      if (!localStorage.getItem('cookiesAccepted')) {
-        document.getElementById('cookieBanner').style.display = 'flex';
-      }
     });
-
-    function acceptCookies() {
-      localStorage.setItem('cookiesAccepted', 'true');
-      document.getElementById('cookieBanner').style.display = 'none';
-    }
   </script>
 </body>
 </html>
