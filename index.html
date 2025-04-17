@@ -4,9 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PlanToShop – Grocery Shopping Made Easy</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="PlanToShop helps you reduce your grocery costs by 20-50% through better shopping planning. Create lists, track prices, and save money." />
+  <meta name="keywords" content="grocery planning, save money on groceries, grocery app, shopping list app" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://plantoshop.com/" />
+  <meta property="og:title" content="PlanToShop – Reduce Your Grocery Costs" />
+  <meta property="og:description" content="Save 20-50% on your grocery bills with better planning. Download the PlanToShop app today." />
+  <meta property="og:image" content="https://plantoshop.com/og-image.jpg" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://plantoshop.com/" />
+  <meta property="twitter:title" content="PlanToShop – Reduce Your Grocery Costs" />
+  <meta property="twitter:description" content="Save 20-50% on your grocery bills with better planning. Download the PlanToShop app today." />
+  <meta property="twitter:image" content="https://plantoshop.com/og-image.jpg" />
+  
+  <!-- Favicon -->
   <link rel="icon" href="icon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+  
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="icon.png" as="image" fetchpriority="high">
+  
+  <!-- Fonts and Styles with display swap for better loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" media="print" onload="this.media='all'" />
   <style>
     :root {
       --primary: #2d7a38;
@@ -19,6 +49,7 @@
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
       --radius-md: 12px;
       --radius-lg: 16px;
+      --transition-normal: 0.3s ease;
     }
 
     * {
@@ -105,10 +136,17 @@
     .app-store-btn {
       display: inline-block;
       transition: transform 0.2s ease;
+      position: relative;
+      z-index: 1;
     }
 
     .app-store-btn:hover {
       transform: translateY(-2px);
+    }
+
+    .app-store-btn:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 4px;
     }
 
     .app-store-btn img {
@@ -123,6 +161,14 @@
 
     .splide__slide {
       padding: 0.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .splide__slide.is-active {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .splide__slide img {
@@ -137,6 +183,14 @@
       background-color: var(--bg-light);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .benefits-section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .benefits-section h2 {
@@ -155,6 +209,15 @@
       margin-bottom: 1.5rem;
       padding-bottom: 1.5rem;
       border-bottom: 1px solid rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition-delay: calc(var(--i) * 150ms);
+    }
+
+    .benefit-item.visible {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .benefit-item:last-child {
@@ -176,6 +239,11 @@
       color: var(--primary);
       font-size: 1.25rem;
       font-weight: bold;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .benefit-item:hover .benefit-icon {
+      transform: scale(1.1);
     }
 
     .benefit-content {
@@ -201,6 +269,14 @@
       background: linear-gradient(to bottom right, var(--primary-light), white);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .cta-section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .cta-section h2 {
@@ -215,6 +291,14 @@
       color: var(--text-muted);
       text-align: center;
       border-top: 1px solid rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    footer.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .footer-content {
@@ -229,10 +313,56 @@
     .footer-content a {
       color: var(--primary);
       text-decoration: none;
+      position: relative;
+      transition: color var(--transition-normal);
     }
 
     .footer-content a:hover {
-      text-decoration: underline;
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    .footer-content a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--primary);
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-out;
+    }
+
+    .footer-content a:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary);
+      color: white;
+      padding: 8px;
+      z-index: 100;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Animation keyframes */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      animation: fadeIn 0.8s ease-out forwards;
     }
 
     /* Mobile optimizations */
@@ -268,65 +398,102 @@
         padding: 2rem;
       }
     }
+
+    /* Reduce motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="hero">
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <div class="hero" role="banner">
     <div class="logo">
-      <img src="icon.png" alt="PlanToShop Icon" class="logo-img">
+      <img src="icon.png" alt="PlanToShop Icon" class="logo-img" width="42" height="42">
       <span>PlanToShop</span>
     </div>
 
-    <h1>Reduce Your Grocery Cost</h1>
+    <h1 id="page-title">Reduce Your Grocery Cost</h1>
     <p>Just planning ahead can reduce your grocery cost by <span class="savings">20% – 50%</span>.</p>
 
-    <a href="https://apps.apple.com/app/6739975303" class="app-store-btn" target="_blank">
-      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+    <a href="https://apps.apple.com/app/6739975303" class="app-store-btn" target="_blank" rel="noopener" aria-label="Download on the App Store">
+      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" width="156" height="48">
     </a>
   </div>
 
-  <div class="container">
-    <!-- Splide Carousel -->
-    <div class="splide" aria-label="App Screenshots">
-      <div class="splide__track">
-        <ul class="splide__list">
-          <li class="splide__slide"><img src="Screen1.png" alt="Add Products"></li>
-          <li class="splide__slide"><img src="Screen2.png" alt="Add Prices"></li>
-          <li class="splide__slide"><img src="Screen3.png" alt="Create List"></li>
-          <li class="splide__slide"><img src="Screen4.png" alt="Shopping List"></li>
-          <li class="splide__slide"><img src="Screen5.png" alt="Shopping List"></li>
-          <li class="splide__slide"><img src="Screen6.png" alt="Shopping List"></li>
+  <main id="main-content">
+    <div class="container">
+      <!-- Splide Carousel -->
+      <div class="splide" aria-label="App Screenshots">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide"><img src="Screen1.png" alt="Screenshot: Add Products Screen" loading="lazy" width="360" height="720"></li>
+            <li class="splide__slide"><img src="Screen2.png" alt="Screenshot: Add Prices Screen" loading="lazy" width="360" height="720"></li>
+            <li class="splide__slide"><img src="Screen3.png" alt="Screenshot: Create List Screen" loading="lazy" width="360" height="720"></li>
+            <li class="splide__slide"><img src="Screen4.png" alt="Screenshot: Shopping List View" loading="lazy" width="360" height="720"></li>
+            <li class="splide__slide"><img src="Screen5.png" alt="Screenshot: Shopping List Usage" loading="lazy" width="360" height="720"></li>
+            <li class="splide__slide"><img src="Screen6.png" alt="Screenshot: Shopping List Completion" loading="lazy" width="360" height="720"></li>
+          </ul>
+        </div>
+      </div>
+    
+      <!-- Benefits Section -->
+      <section class="benefits-section" aria-labelledby="benefits-title">
+        <h2 id="benefits-title">Why Planning Matters</h2>
+        <ul class="benefits-list">
+          <li class="benefit-item" style="--i: 0">
+            <div class="benefit-icon" aria-hidden="true">!</div>
+            <div class="benefit-content">
+              <div class="benefit-title">Avoid Impulse Buys</div>
+              <div class="benefit-desc">Without a plan, it's easy to grab things you don't actually need, adding unnecessary costs to your bill.</div>
+            </div>
+          </li>
+          <li class="benefit-item" style="--i: 1">
+            <div class="benefit-icon" aria-hidden="true">↻</div>
+            <div class="benefit-content">
+              <div class="benefit-title">Eliminate Frequent Trips</div>
+              <div class="benefit-desc">Forgetting items leads to extra store visits, costing you more time and money with each trip.</div>
+            </div>
+          </li>
+          <li class="benefit-item" style="--i: 2">
+            <div class="benefit-icon" aria-hidden="true">♻️</div>
+            <div class="benefit-content">
+              <div class="benefit-title">Reduce Food Waste</div>
+              <div class="benefit-desc">No plan means more food gets tossed — and so does your hard-earned money.</div>
+            </div>
+          </li>
         </ul>
+      </section>
+    
+      <!-- Final Call to Action -->
+      <div class="cta-section" aria-labelledby="cta-title">
+        <h2 id="cta-title">
+          Save 20–50% on groceries with better planning
+        </h2>
+        <a href="https://apps.apple.com/app/6739975303" class="app-store-btn" target="_blank" rel="noopener" aria-label="Download PlanToShop from the App Store">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" width="156" height="48">
+        </a>
       </div>
     </div>
-  
-    <!-- Benefits Section -->
-    <section class="benefits-section">
-      <h2>Why Planning Matters</h2>
-      <ul class="benefits-list">
-        <li class="benefit-item">
-          <div class="benefit-icon">!</div>
-          <div class="benefit-content">
-            <div class="benefit-title">Avoid Impulse Buys</div>
-            <div class="benefit-desc">Without a plan, it's easy to grab things you don't actually need, adding unnecessary costs to your bill.</div>
-          </div>
-        </li>
-        <li class="benefit-item">
-          <div class="benefit-icon">↻</div>
-          <div class="benefit-content">
-            <div class="benefit-title">Eliminate Frequent Trips</div>
-            <div class="benefit-desc">Forgetting items leads to extra store visits, costing you more time and money with each trip.</div>
-          </div>
-        </li>
-        <li class="benefit-item">
-          <div class="benefit-icon">♻️</div>
-          <div class="benefit-content">
-            <div class="benefit-title">Reduce Food Waste</div>
-            <div class="benefit-desc">No plan means more food gets tossed — and so does your hard-earned money.</div>
-          </div>
-        </li>
-      </ul>
-    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-content">
+      <span>&copy; 2025</span>
+      <a href="https://appdevmasters.com/" target="_blank" rel="noopener">App Dev Masters LTD</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms & Conditions</a>
+    </div>
+  </footer></section>
   
     <!-- Final Call to Action -->
     <div class="cta-section">
